@@ -17,6 +17,7 @@ enum buttonValue {
 
 export const TodoItem: React.FC<TodoProps> = ({todoItem}) => {
     const dispatch = useAppDispatch()
+
     /* удаление todo и удаление выбранного todo.
        Когда пользователь решил удалить todo который выбран
     */
@@ -24,12 +25,13 @@ export const TodoItem: React.FC<TodoProps> = ({todoItem}) => {
         dispatch(deleteTodo(id))
         dispatch(changeSelectTodo(null))
     }
+
     const handleEdit = (todoItem: Todo) => {
         dispatch(changeSelectTodo(todoItem))
     }
+
     const handleToggleComplete = (id: number) => {
         dispatch(toggleComplete(id))
-
     }
 
     return (
@@ -38,8 +40,7 @@ export const TodoItem: React.FC<TodoProps> = ({todoItem}) => {
             <span className={classNames(todoItem.completed && styles.completedTodo)}>{todoItem.title}</span>
             <div className={styles.buttonContainer}>
                 <button className={styles.button} onClick={() => handleEdit(todoItem)}>{buttonValue.EDIT}</button>
-                <button className={styles.button}
-                        onClick={() => handleDelete(todoItem.id)}>{buttonValue.DELETE}</button>
+                <button className={styles.button} onClick={() => handleDelete(todoItem.id)}>{buttonValue.DELETE}</button>
             </div>
         </li>
     )

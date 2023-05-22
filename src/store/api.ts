@@ -18,14 +18,13 @@ export const deleteTodo = createAsyncThunk<number, number>(
         return id
     }
 )
+
 export const editTodoText = createAsyncThunk<Todo, { id: number, value: string }, {
     state: { todos: TodoList }
 }>(
     'todos/editTodoText',
     async function (data, {getState}) {
         const todo = getState().todos.list.find(todo => todo.id === data.id)
-
-
         const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${data.id}`, {
             method: 'PATCH',
             headers: {
@@ -57,6 +56,7 @@ export const addNewTodo = createAsyncThunk<Todo, string>(
         return (await response.json()) as Todo;
     }
 );
+
 export const toggleComplete = createAsyncThunk<Todo, number, {
     state: { todos: TodoList }
 }>(

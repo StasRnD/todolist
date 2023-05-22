@@ -15,6 +15,7 @@ export const TodoForm: React.FC = () => {
     const dispatch = useAppDispatch()
     const selectTodo = useAppSelector(state => state.todos.selectTodo)
     const [value, setValue] = useState<string>('')
+    
     const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
         /* если есть выбранный Todo, значит происходит редактирование имеющегося Todo
@@ -29,6 +30,7 @@ export const TodoForm: React.FC = () => {
 
         setValue('')
     }
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value)
     }
@@ -43,6 +45,7 @@ export const TodoForm: React.FC = () => {
         dispatch(changeSelectTodo(null))
         setValue('')
     }
+
     /* При выборе todo, записываем его текст в форму.
         Если todo выбран и происходит его удаление инпут формы очищается
     */
@@ -62,7 +65,6 @@ export const TodoForm: React.FC = () => {
                 <button className={styles.button} disabled={isDisabled()}>{selectTodo ? buttonFormText.SAVE : buttonFormText.ADD}</button>
                 <button type={'button'} disabled={!selectTodo} className={styles.button} onClick={handleClear}>{buttonFormText.CANCEL}</button>
             </div>
-
         </form>
     )
 

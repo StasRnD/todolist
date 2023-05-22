@@ -7,6 +7,7 @@ const defaultState: TodoList = {
     list: [],
     selectTodo: null,
 }
+
 export const TodosSlice = createSlice({
     name: 'todos',
     initialState: defaultState,
@@ -39,7 +40,6 @@ export const TodosSlice = createSlice({
                     editTodo.completed = action.payload.completed
                 }
             })
-
     }
 })
 
